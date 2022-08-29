@@ -92,8 +92,19 @@ function cargarCarrito() {
   }
 }
 
+let productosJSON = [];
+
+function obtenerJSON() {
+  $.getJSON("../json/productos.json", function (respuesta, estado) {
+    if (estado == "success") {
+      productosJSON = respuesta;
+      renderizarProductos();
+    }
+  });
+}
+
 const lista = document.getElementById("listado");
-fetch("/productos.js")
+fetch("../json/productos.json")
 .then(response => response.json())
 .then(productos => {
   productos.forEach(producto => {
